@@ -90,7 +90,17 @@ export default function ProjectDetailPage() {
 
   const handleUpdateProgress = async (taskId: number, progress: number) => {
     try {
-      await api.updateTask(taskId, { progress });
+      const task = tasks.find((t) => t.id === taskId);
+      if (!task) return;
+
+      await api.updateTask(taskId, {
+        projectId: task.projectId,
+        name: task.name,
+        startDate: task.startDate,
+        endDate: task.endDate,
+        progress,
+        status: task.status,
+      });
       loadProjectAndTasks();
     } catch (err) {
       setError('進捗の更新に失敗しました');
@@ -100,7 +110,17 @@ export default function ProjectDetailPage() {
 
   const handleUpdateStatus = async (taskId: number, status: string) => {
     try {
-      await api.updateTask(taskId, { status });
+      const task = tasks.find((t) => t.id === taskId);
+      if (!task) return;
+
+      await api.updateTask(taskId, {
+        projectId: task.projectId,
+        name: task.name,
+        startDate: task.startDate,
+        endDate: task.endDate,
+        progress: task.progress,
+        status,
+      });
       loadProjectAndTasks();
     } catch (err) {
       setError('ステータスの更新に失敗しました');

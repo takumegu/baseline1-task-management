@@ -61,6 +61,7 @@ export interface UpdateProjectRequest {
 }
 
 export interface CreateTaskRequest {
+  projectId?: number;
   taskCode?: string;
   name: string;
   assignee?: string;

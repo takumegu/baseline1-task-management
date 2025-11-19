@@ -68,7 +68,7 @@ class ApiClient {
   async createTask(projectId: number, data: CreateTaskRequest): Promise<Task> {
     const response = await this.client.post<ApiResponse<Task>>(
       `/projects/${projectId}/tasks`,
-      data
+      { ...data, projectId }
     );
     return response.data.data;
   }

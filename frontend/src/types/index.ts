@@ -74,6 +74,7 @@ export interface CreateTaskRequest {
 }
 
 export interface UpdateTaskRequest {
+  projectId?: number;
   name?: string;
   assignee?: string;
   startDate?: string;

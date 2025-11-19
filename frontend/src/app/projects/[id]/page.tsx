@@ -111,9 +111,12 @@ export default function ProjectDetailPage() {
   const handleGanttTaskChange = async (task: Task) => {
     try {
       await api.updateTask(task.id, {
+        projectId: task.projectId,
+        name: task.name,
         startDate: task.startDate,
         endDate: task.endDate,
         progress: task.progress,
+        status: task.status,
       });
       loadProjectAndTasks();
     } catch (err) {
